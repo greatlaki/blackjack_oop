@@ -12,6 +12,7 @@ class Game:
     def __init__(self):
         self.players = []
         self.player = None
+        self.player_pos = None
         # self.dealer = None
         self.all_players_count = 1
         self.deck = Deck()
@@ -33,16 +34,16 @@ class Game:
                 break
             self.all_players_count = bots_count + 1
 
-        for i in range(bots_count):
-            # todo: should be random pos
-            b = player.Bot(position=i)
+        for _ in range(bots_count):
+            b = player.Bot()
             self.players.append(b)
 
             print(b, ' is created')
 
-        # todo: should be random pos
-        self.player = player.Player(position=bots_count + 1)
-        self.players.append(self.player)
+        self.player = player.Player()
+        self.player_pos = random.randint(0, self.all_players_count)
+        print("Your position is: ")
+        self.players.insert(self.player_pos, self.player)
 
     def ask_bet(self):
         for player in self.players:

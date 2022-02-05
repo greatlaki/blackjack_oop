@@ -5,9 +5,8 @@ from deck import Deck
 
 class AbstractPlayer(abc.ABC):
 
-    def __init__(self, position):
+    def __init__(self):
         self.cards = []
-        self.position = position
         self.bet = 0
         self.full_points = 0
 

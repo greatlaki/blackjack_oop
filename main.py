@@ -8,3 +8,6 @@ if __name__ == '__main__':
     for pl in g.players:
         pl.print_cards()
         print("***************")
+
+    print(g.player_pos)
+    print(g.players)
