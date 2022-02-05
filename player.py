@@ -14,7 +14,6 @@ class AbstractPlayer(abc.ABC):
     def change_points(self):
         self.full_points = sum([card.points for card in self.cards])
 
-
     def ask_card(self, deck, card_count):
         for _ in range(card_count):
             card = deck.get_card()
@@ -28,8 +27,10 @@ class AbstractPlayer(abc.ABC):
         pass
 
     def print_cards(self):
+        print(self, " bot data")
         for card in self.cards:
             print(card)
+        print(self.full_points)
 
 
 class Player(AbstractPlayer):

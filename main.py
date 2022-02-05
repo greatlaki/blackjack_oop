@@ -6,4 +6,5 @@ if __name__ == '__main__':
     g.start_game()
 
     for pl in g.players:
-        print(pl)
+        pl.print_cards()
+        print("***************")

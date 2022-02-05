@@ -1,12 +1,13 @@
 import random
 
 import player
-from player import *
 from deck import Deck
 from const import MESSAGES
 
 
 class Game:
+
+    max_pl_count = 4
 
     def __init__(self):
         self.players = []
@@ -26,15 +27,18 @@ class Game:
                 return True
 
     def _launching(self):
-        bots_count = int(input("Hello, write bots count "))
-        self.all_players_count = bots_count + 1
+        while True:
+            bots_count = int(input("Hello, write bots count "))
+            if bots_count <= self.max_pl_count - 1:
+                break
+            self.all_players_count = bots_count + 1
 
         for i in range(bots_count):
             # todo: should be random pos
             b = player.Bot(position=i)
             self.players.append(b)
 
-            print(b, 'is created')
+            print(b, ' is created')
 
         # todo: should be random pos
         self.player = player.Player(position=bots_count + 1)
