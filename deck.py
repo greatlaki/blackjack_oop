@@ -23,7 +23,7 @@ class Deck:
         self.cards = self._create_deck()
         shuffle(self.cards)
 
-    def _create_deck(self):
+    def _generate_deck(self):
         cards = []
         for suit, rank in product(SUITS, RANKS):
             if rank == 'ace':

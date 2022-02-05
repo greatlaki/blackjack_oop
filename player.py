@@ -1,14 +1,17 @@
 import abc
 
+from deck import Deck
 
 class AbstractPlayer(abc.ABC):
 
-    def __init__(self):
-        pass
+    def __init__(self, position):
+        self.cards = []
+        self.position = position
 
-    @abc.abstractmethod
-    def ask_card(self):
-        pass
+    def ask_card(self, deck):
+        card = deck.get_card()
+        self.cards.append(card)
+        return True
 
 
 class Player(AbstractPlayer):
@@ -20,4 +23,5 @@ class Dealer(AbstractPlayer):
 
 
 class Bot(AbstractPlayer):
-    pass
+
+    def __init__(self):

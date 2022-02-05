@@ -1,4 +1,7 @@
+import random
+
 from player import Bot
+from deck import Deck
 from const import MESSAGES
 
 
@@ -9,6 +12,7 @@ class Game:
         self.player = None
         self.dealer = None
         self.all_players_count = 1
+        self.deck = Deck()
 
     @staticmethod
     def _ask_starting(message):
@@ -27,5 +31,7 @@ class Game:
         bots_count = int(input("Hello, write bots count "))
         self.all_players_count = bots_count + 1
         for _ in range(bots_count):
-            b = Bot()
+            b = Bot(position=random.randint(0, self.all_players_count))
             self.players.append(b)
+            print(b, 'is created')
+
