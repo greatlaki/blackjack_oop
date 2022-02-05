@@ -1,11 +1,8 @@
 from deck import Deck
+from game import Game
 
 if __name__ == '__main__':
-    d = Deck()
-
-    print(len(d))
-    card = d.get_card()
-    print(card)
-    print(len(d))
+    g = Game()
+    g.start_game()
 
 

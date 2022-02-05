@@ -93,3 +93,7 @@ PRINTED = {
 * |---- *
 *********"""
 }
+
+MESSAGES = {
+    'ask_start': "Want to play(y/n) ",
+}
