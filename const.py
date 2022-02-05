@@ -97,3 +97,5 @@ PRINTED = {
 MESSAGES = {
     'ask_start': "Want to play(y/n) ",
 }
+
+NAMES = ['Hanna', 'Andrei', 'Tatyana', 'Natalya']

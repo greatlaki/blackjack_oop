@@ -20,7 +20,7 @@ class Card:
 class Deck:
 
     def __init__(self):
-        self.cards = self._create_deck()
+        self.cards = self._generate_deck()
         shuffle(self.cards)
 
     def _generate_deck(self):
