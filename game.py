@@ -1,8 +1,8 @@
-import random
-
 import player
 from deck import Deck
 from const import MESSAGES
+
+import random
 
 
 class Game:
@@ -42,7 +42,7 @@ class Game:
 
         self.player = player.Player()
         self.player_pos = random.randint(0, self.all_players_count)
-        print("Your position is: ")
+        print("Your position is:", self.player_pos)
         self.players.insert(self.player_pos, self.player)
 
     def ask_bet(self):
@@ -51,7 +51,19 @@ class Game:
 
     def first_descr(self):
         for player in self.players:
-            player.ask_card(self.deck, 2)
+            for _ in range(2):
+                card = self.deck.get_card()
+                player.take_card(card)
+
+    def ask_cards(self):
+        for pl in self.players:
+
+            while pl.ask_card():
+                card = self.deck.get_card()
+                pl.take_card(card)
+
+                if isinstance(pl, player.Player):
+                    pl.print_cards()
 
     def start_game(self):
         message = MESSAGES.get('ask_start')
@@ -65,6 +77,11 @@ class Game:
         # ask about bet
         self.ask_bet()
 
-        # give first cards to the player
+        # give first cards to the players
         self.first_descr()
 
+        # print player cards after first deal
+        self.player.print_cards()
+
+        # ask players about cards
+        self.ask_cards()
