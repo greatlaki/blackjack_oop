@@ -95,10 +95,12 @@ PRINTED = {
 }
 
 MESSAGES = {
-    'ask_start': "Want to play?(y/n) ",
+    'ask_start': 'Want to play?(y/n) ',
     'ask_card': 'Want new card?(y/n) ',
-    'eq': '{player} player has {points} points so it eq with dealer\n {} bid will be back',
+    'eq': '{player} player has {points} points so it eq with dealer points\n {player} bid will be back',
     'win': '{} player are win',
+    'lose': '{} player are lose',
+    'rerun': 'Wanna play again?(y/n)',
 }
 
 NAMES = ['Hanna', 'Andrei', 'Tatyana', 'Natalya']

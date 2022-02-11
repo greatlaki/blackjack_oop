@@ -46,14 +46,14 @@ class Game:
         self.players.insert(self.player_pos, self.player)
 
     def ask_bet(self):
-        for player in self.players:
-            player.change_bet(self.max_bet, self.min_bet)
+        for pl in self.players:
+            pl.change_bet(self.max_bet, self.min_bet)
 
     def first_descr(self):
-        for player in self.players:
+        for pl in self.players:
             for _ in range(2):
                 card = self.deck.get_card()
-                player.take_card(card)
+                pl.take_card(card)
 
         card = self.deck.get_card()
         self.dealer.take_card(card)
@@ -108,6 +108,12 @@ class Game:
                     elif isinstance(pl, player.Player):
                         print("You are win")
 
+                elif pl.full_points < self.dealer.full_points:
+                    if isinstance(pl, player.Bot):
+                        print(MESSAGES.get('lose').format(pl))
+                    elif isinstance(pl, player.Player):
+                        print('You are lose!')
+
     def play_with_dealer(self):
         while self.dealer.ask_card():
             card = self.deck.get_card()
@@ -123,16 +129,22 @@ class Game:
         # generating data rof starting
         self._launching()
 
-        # ask about bet
-        self.ask_bet()
+        while True:
+            # ask about bet
+            self.ask_bet()
 
-        # give first cards to the players
-        self.first_descr()
+            # give first cards to the players
+            self.first_descr()
 
-        # print player cards after first deal
-        self.player.print_cards()
+            # print player cards after first deal
+            self.player.print_cards()
 
-        # ask players about cards
-        self.ask_cards()
+            # ask players about cards
+            self.ask_cards()
 
-        self.play_with_dealer()
+            self.play_with_dealer()
+
+            self.check_winner()
+
+            if not self._ask_starting(MESSAGES.get('rerun')):
+                break

@@ -7,10 +7,9 @@ if __name__ == '__main__':
     g = Game()
     g.start_game()
 
-    print('\n\nDONE')
-
-    for pl in g.players:
-        pl.print_cards()
-        if isinstance(pl, Bot):
-            print('Max points: ', pl.max_points)
-        print('*********')
+    print(g.player.money)
+    # for pl in g.players:
+    #     pl.print_cards()
+    #     if isinstance(pl, Bot):
+    #         print('Max points: ', pl.max_points)
+    #     print('*********')
