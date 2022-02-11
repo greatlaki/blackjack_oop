@@ -55,12 +55,28 @@ class Game:
                 card = self.deck.get_card()
                 player.take_card(card)
 
+    def check_stop(self, player):
+        if player.full_points >= 21:
+            return True
+        else:
+            return False
+
+    def remove_player(self, player):
+        player.print_cards()
+        self.players.remove(player)
+
     def ask_cards(self):
         for pl in self.players:
 
             while pl.ask_card():
                 card = self.deck.get_card()
                 pl.take_card(card)
+
+                is_stop = self.check_stop(pl)
+                if is_stop:
+                    if pl.full_points > 21 or isinstance(pl, player.Player):
+                        self.remove_player(pl)
+                    break
 
                 if isinstance(pl, player.Player):
                     pl.print_cards()
@@ -85,3 +101,4 @@ class Game:
 
         # ask players about cards
         self.ask_cards()
+
