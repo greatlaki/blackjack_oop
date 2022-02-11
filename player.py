@@ -11,6 +11,7 @@ class AbstractPlayer(abc.ABC):
         self.cards = []
         self.bet = 0
         self.full_points = 0
+        self.money = 100
 
     def change_points(self):
         self.full_points = sum([card.points for card in self.cards])
@@ -41,6 +42,8 @@ class Player(AbstractPlayer):
             value = int(input('Make your bet: '))
             if value < max_bet and value > min_bet:
                 self.bet = value
+                self.money -= self.bet
+
                 break
         print("Your bet is: ", self.bet)
 
@@ -63,6 +66,7 @@ class Bot(AbstractPlayer):
 
     def change_bet(self, max_bet, min_bet):
         self.bet = random.randint(min_bet, max_bet)
+        self.money -= self.bet
         print(self, 'give: ', self.bet)
 
     def ask_card(self):

@@ -97,6 +97,8 @@ PRINTED = {
 MESSAGES = {
     'ask_start': "Want to play?(y/n) ",
     'ask_card': 'Want new card?(y/n) ',
+    'eq': '{player} player has {points} points so it eq with dealer\n {} bid will be back',
+    'win': '{} player are win',
 }
 
 NAMES = ['Hanna', 'Andrei', 'Tatyana', 'Natalya']

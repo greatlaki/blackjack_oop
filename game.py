@@ -65,9 +65,13 @@ class Game:
         else:
             return False
 
-    def remove_player(self, player):
-        player.print_cards()
-        self.players.remove(player)
+    def remove_player(self, pl):
+        pl.print_cards()
+        if isinstance(pl, player.Player):
+            print('You are fall!')
+        if isinstance(pl, player.Bot):
+            print(pl, 'are fall!')
+        self.players.remove(pl)
 
     def ask_cards(self):
         for pl in self.players:
@@ -88,13 +92,21 @@ class Game:
     def check_winner(self):
         if self.dealer.full_points > 21:
             # all win
-            pass
-        elif self.dealer.full_points == 21:
-            # 1 * 1 | dealer win
-            pass
+            print("Dealer are fall! ALL players in game are win!")
+            for winner in self.players:
+                winner.money += winner.bet * 2
         else:
-            # check with each player
-            pass
+            for pl in self.players:
+                if pl.full_points == self.dealer.full_points:
+                    pl.money += pl.bet
+                    print(MESSAGES.get('eq').format(player=pl,
+                                                    points=pl.full_points))
+                elif pl.full_points > self.dealer.full_points:
+                    pl.money += pl.bet * 2
+                    if isinstance(pl, player.Bot):
+                        print(MESSAGES.get('win').format(pl))
+                    elif isinstance(pl, player.Player):
+                        print("You are win")
 
     def play_with_dealer(self):
         while self.dealer.ask_card():
