@@ -13,7 +13,7 @@ class Game:
         self.players = []
         self.player = None
         self.player_pos = None
-        # self.dealer = None
+        self.dealer = player.Dealer()
         self.all_players_count = 1
         self.deck = Deck()
         self.max_bet, self.min_bet = 20, 0
@@ -55,6 +55,10 @@ class Game:
                 card = self.deck.get_card()
                 player.take_card(card)
 
+        card = self.deck.get_card()
+        self.dealer.take_card(card)
+        self.dealer.print_cards()
+
     def check_stop(self, player):
         if player.full_points >= 21:
             return True
@@ -81,6 +85,23 @@ class Game:
                 if isinstance(pl, player.Player):
                     pl.print_cards()
 
+    def check_winner(self):
+        if self.dealer.full_points > 21:
+            # all win
+            pass
+        elif self.dealer.full_points == 21:
+            # 1 * 1 | dealer win
+            pass
+        else:
+            # check with each player
+            pass
+
+    def play_with_dealer(self):
+        while self.dealer.ask_card():
+            card = self.deck.get_card()
+            self.dealer.take_card(card)
+        self.dealer.print_cards()
+
     def start_game(self):
         message = MESSAGES.get('ask_start')
         # todo: max players count?
@@ -102,3 +123,4 @@ class Game:
         # ask players about cards
         self.ask_cards()
 
+        self.play_with_dealer()

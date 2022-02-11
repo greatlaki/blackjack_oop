@@ -28,7 +28,7 @@ class AbstractPlayer(abc.ABC):
         pass
 
     def print_cards(self):
-        print(self, " bot data")
+        print(self, " data")
         for card in self.cards:
             print(card)
         print("Full points: ", self.full_points)
@@ -71,3 +71,19 @@ class Bot(AbstractPlayer):
         else:
             return False
 
+
+class Dealer(AbstractPlayer):
+
+    max_points = 17
+
+    def change_bet(self, max_bet, min_bet):
+        """
+        NOTE: This type is dealer so it has no bets
+        """
+        raise NotImplemented("This type is dealer so it has no bets")
+
+    def ask_card(self):
+        if self.full_points < self.max_points:
+            return True
+        else:
+            return False
